@@ -1,0 +1,59 @@
+<div class="close-btn-modal" (click)="onNoClick()">
+  <i class="fa fa-times"></i>
+</div>
+<div class="container">
+  <form [formGroup]="appSettingForm">
+    <h4> {{'APPSETTING' | translate }}</h4>
+    <div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="appSettingKey"> {{'NAME' | translate }}:</label>
+            <input formControlName="name" type="text" class="form-control" id="appSettingKey">
+            <div *ngIf="appSettingForm.get('name').touched && appSettingForm.get('name').errors">
+              <div class="text-danger" *ngIf="appSettingForm.get('name').hasError('required')">
+                {{'NAME_IS_REQUIRED' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="appSettingKey"> {{'KEY' | translate }}:</label>
+            <input formControlName="key" [disabled]="isEdit" type="text" class="form-control" id="appSettingKey">
+            <div *ngIf="appSettingForm.get('key').touched && appSettingForm.get('key').errors">
+              <div class="text-danger" *ngIf="appSettingForm.get('key').hasError('required')">
+                {{'KEY_IS_REQUIRED' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="appSettingValue"> {{'VALUE' | translate }}:</label>
+            <input formControlName="value" type="text" class="form-control" id="appSettingValue">
+            <div *ngIf="appSettingForm.get('value').touched && appSettingForm.get('value').errors">
+              <div class="text-danger" *ngIf="appSettingForm.get('value').hasError('required')">
+                {{'VALUE_IS_REQUIRED' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button *hasClaim="['app_settings_edit','app_settings_add']" class="btn btn-success btn-sm m-right-10"
+        (click)="saveAppSetting()" cdkFocusInitial><i class="fas fa-save"></i>
+        {{'SAVE' | translate }}
+      </button>
+      <button class="btn btn-danger btn-sm" (click)="onNoClick()">
+        <i class="fas fa-times-circle"></i>
+        {{'CANCEL' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

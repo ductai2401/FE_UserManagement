@@ -1,0 +1,201 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a [routerLink]="['/']" class="brand-link">
+    <img src="assets/images/logo.png" alt="Chem Website Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light">{{'USER_MANAGEMENT' | translate}}</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img *ngIf="appUserAuth.profilePhoto" class="img-circle usr-profile elevation-2"
+          [src]="appUserAuth.profilePhoto" alt="User picture">
+        <img *ngIf="!appUserAuth.profilePhoto" class="img-circle usr-profile elevation-2"
+          src="assets/images/user-profile.jpg" alt="User picture">
+      </div>
+      <div class="info">
+        <a [routerLink]="['my-profile']" class="d-block">{{appUserAuth.firstName}} {{appUserAuth.lastName}}</a>
+      </div>
+    </div>
+
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item" *hasClaim="'dashboard_list'">
+          <a [routerLink]="['/']" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              {{'DASHBOARD' | translate}}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" *hasClaim="['role_add', 'role_list']">
+          <a class="nav-link cursor-pointer">
+            <i class="nav-icon fas fa-users-cog"></i>
+            <p>
+              {{'ROLES' | translate}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *hasClaim="'role_list'">
+              <a [routerLink]="['/roles']" class="nav-link">
+                <i class="far fa-list-alt nav-icon"></i>
+                <p>{{'LIST' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'role_add'">
+              <a [routerLink]="['/roles/manage']" class="nav-link">
+                <i class="fas fa-plus-square nav-icon"></i>
+                <p>{{'ADD_NEW' | translate}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *hasClaim="['user_list', 'user_add', 'user_role_edit']">
+          <a class="nav-link cursor-pointer">
+            <i class="nav-icon fa fa-users"></i>
+            <p>
+              {{'USERS' | translate}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *hasClaim="'user_list'">
+              <a [routerLink]="['/users']" class="nav-link">
+                <i class="far fa-list-alt nav-icon"></i>
+                <p>{{'LIST' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'user_add'">
+              <a [routerLink]="['/users/manage']" class="nav-link">
+                <i class="fas fa-plus-square nav-icon"></i>
+                <p>{{'ADD_NEW' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'user_role_edit'">
+              <a [routerLink]="['/roles/users']" class="nav-link">
+                <i class="fas fa-user-shield nav-icon"></i>
+                <p>{{'USER_ROLES' | translate}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *hasClaim="['online_users_list']">
+          <a [routerLink]="['/sessions']" class="nav-link">
+            <i class="nav-icon fa fa-chalkboard-teacher"></i>
+            <p>
+              {{'CURRENT_LOGGED_USER' | translate}}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" *hasClaim="['email_template_list', 'send_email_list', 'email_smtp_list']">
+          <a class="nav-link cursor-pointer">
+            <i class="nav-icon fas fa-envelope-open-text"></i>
+            <p>
+              {{'EMAIL' | translate}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *hasClaim="'email_smtp_list'">
+              <a [routerLink]="['/email-smtp']" class="nav-link">
+                <i class="fas fa-cog nav-icon"></i>
+                <p>{{'SMTP_SETTINGS' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'email_template_list'">
+              <a [routerLink]="['/email-template']" class="nav-link">
+                <i class="fas fa-mail-bulk nav-icon"></i>
+                <p>{{'EMAIL_TEMPLATE' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'send_email_list'">
+              <a [routerLink]="['/send-email']" class="nav-link">
+                <i class="fas fa-paper-plane nav-icon"></i>
+                <p>{{'SEND_EMAIL' | translate}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *hasClaim="['app_settings_list', 'action_list', 'page_list', 'page_action_edit']">
+          <a class="nav-link cursor-pointer">
+            <i class="nav-icon fa fa-tools"></i>
+            <p>
+              {{'SETTINGS' | translate}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *hasClaim="'app_settings_list'">
+              <a [routerLink]="['/appsettings']" class="nav-link">
+                <i class="fas fa-wrench nav-icon"></i>
+                <p>{{'APP_SETTINGS' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'action_list'">
+              <a [routerLink]="['/actions']" class="nav-link">
+                <i class="fas fa-tasks nav-icon"></i>
+                <p>{{'ACTION' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'page_list'">
+              <a [routerLink]="['/pages']" class="nav-link">
+                <i class="fas fa-file nav-icon"></i>
+                <p>{{'PAGES' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'page_action_edit'">
+              <a [routerLink]="['/page-action']" class="nav-link">
+                <i class="fas fa-arrows-alt-h nav-icon"></i>
+                <p>{{'PAGE_ACTION' | translate}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item" *hasClaim="['login_audit_list', 'system_logs_list']">
+          <a class="nav-link cursor-pointer">
+            <i class="fas fa-exclamation-triangle nav-icon"></i>
+            <p>
+              {{'LOGS' | translate}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *hasClaim="'login_audit_list'">
+              <a [routerLink]="['/login-audit']" class="nav-link">
+                <i class="far fa-list-alt nav-icon"></i>
+                <p>{{'LOGIN_AUDIT' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item" *hasClaim="'system_logs_list'">
+              <a [routerLink]="['/logs']" class="nav-link">
+                <i class="far fa-list-alt nav-icon"></i>
+                <p>{{'ERROR_LOGS' | translate}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
