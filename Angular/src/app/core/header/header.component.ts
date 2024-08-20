@@ -66,7 +66,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     {
       lang: 'vi',
       name: 'Vietnamese',
-      flag:'../../assets/images/flags/china.svg'
+      flag:'../../assets/images/flags/vietnam.svg'
     }
   ];
 
